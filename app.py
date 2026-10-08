@@ -38,7 +38,7 @@ PROFILE_DATA = {
         {"degree": "Secondary School Certificate (SSC)", "school": "Vikas Gruh School", "status": "2021"}
     ],
     "stats": [
-        {"label": "Production Projects", "value": "3+"},
+        {"label": "Production Projects", "value": "2 Production"},
         {"label": "Tech Internships", "value": "2"},
         {"label": "Live Deployments", "value": "2 Live"},
         {"label": "Core Technologies", "value": "10+"}
@@ -53,7 +53,7 @@ PROJECTS = [
         "category": "Full-Stack & Cloud",
         "badge": "Live Production",
         "featured": True,
-        "live_url": "https://finsight-analytics-five.vercel.app",
+        "live_url": "https://finsight-analytics-five.vercel.app/",
         "api_docs_url": "https://finsight-api-prod.onrender.com/docs",
         "github_url": GH + "/finsight-analytics",
         "description": (
@@ -62,7 +62,7 @@ PROJECTS = [
             "concentrations, and generates Big-4 caliber executive advisory dossiers. Deployed with "
             "React frontend on Vercel and FastAPI backend on Render with MongoDB Atlas."
         ),
-        "stack": ["FastAPI", "React 18", "MongoDB Atlas", "Pandas", "Docker", "Tailwind CSS"],
+        "stack": ["FastAPI", "React 18", "MongoDB Atlas", "Vercel", "Render", "Pandas", "Tailwind CSS"],
         "metrics": [
             "Sub-50ms API response time with production MongoDB Atlas clustering",
             "Interactive financial decision model with client and admin portals",
@@ -83,61 +83,43 @@ PROJECTS = [
             "Scikit-Learn TF-IDF vectorization, Cosine Similarity matching, dynamic Chart.js skill gap "
             "visualization, and downloadable ATS evaluation reports."
         ),
-        "stack": ["Python", "Flask", "Scikit-Learn", "NLP / TF-IDF", "Chart.js", "PyPDF2"],
+        "stack": ["Python", "Flask", "Scikit-Learn", "NLP / TF-IDF", "Chart.js", "Render"],
         "metrics": [
             "95%+ skill identification precision across 250+ tech competencies",
             "Instant cosine similarity scoring with weighted keyword matching",
             "Full-stack web application with downloadable assessment reports"
         ]
-    },
-    {
-        "id": "django-enterprise-api",
-        "title": "Django Enterprise REST API & Relational Services",
-        "subtitle": "High-Performance Backend Architecture & Relational Database Engine",
-        "category": "Backend & Database",
-        "badge": "Enterprise Backend",
-        "featured": True,
-        "live_url": GH,
-        "github_url": GH,
-        "description": (
-            "Robust server-side backend application built with Python and Django. Features normalized "
-            "MySQL relational schemas, role-based access control (RBAC), and high-throughput RESTful API endpoints."
-        ),
-        "stack": ["Python", "Django", "MySQL", "RESTful APIs", "JWT Auth", "Postman"],
-        "metrics": [
-            "Sub-100ms response time on relational queries",
-            "Role-based authentication protecting sensitive API endpoints",
-            "Optimized Django ORM preventing N+1 database bottlenecks"
-        ]
     }
 ]
 
 SKILLS = {
-    "Backend & Python": [
-        {"name": "Python", "level": 90},
-        {"name": "FastAPI", "level": 88},
-        {"name": "Django", "level": 85},
-        {"name": "Flask", "level": 85},
-        {"name": "RESTful APIs", "level": 85}
-    ],
-    "Frontend & UI": [
-        {"name": "React.js", "level": 82},
+    "Programming Languages": [
+        {"name": "Python", "level": 92},
         {"name": "JavaScript (ES6+)", "level": 85},
-        {"name": "HTML5 & CSS3", "level": 92},
-        {"name": "Tailwind CSS", "level": 85}
+        {"name": "SQL", "level": 88},
+        {"name": "HTML5 & CSS3", "level": 90},
+        {"name": "PHP", "level": 80}
     ],
-    "Machine Learning & Data": [
-        {"name": "Machine Learning", "level": 78},
-        {"name": "NLP & TF-IDF", "level": 80},
-        {"name": "Pandas & NumPy", "level": 82},
-        {"name": "Data Analytics", "level": 80}
+    "Frameworks & Libraries": [
+        {"name": "FastAPI", "level": 88},
+        {"name": "Flask", "level": 88},
+        {"name": "Django", "level": 85},
+        {"name": "React.js", "level": 82},
+        {"name": "Tailwind CSS & Bootstrap", "level": 88}
+    ],
+    "AI & Machine Learning": [
+        {"name": "Natural Language Processing (NLP)", "level": 82},
+        {"name": "TF-IDF & Cosine Similarity", "level": 85},
+        {"name": "Scikit-Learn", "level": 80},
+        {"name": "Pandas & NumPy", "level": 84},
+        {"name": "Data Cleaning", "level": 85}
     ],
     "Databases & Cloud": [
-        {"name": "MongoDB Atlas", "level": 85},
-        {"name": "MySQL / SQLite", "level": 82},
-        {"name": "Docker", "level": 78},
-        {"name": "Git & GitHub", "level": 88},
-        {"name": "Render & Vercel", "level": 85}
+        {"name": "MongoDB Atlas", "level": 88},
+        {"name": "Render & Vercel", "level": 88},
+        {"name": "MySQL & SQLite", "level": 84},
+        {"name": "Git & GitHub", "level": 90},
+        {"name": "Docker & Postman", "level": 80}
     ]
 }
 

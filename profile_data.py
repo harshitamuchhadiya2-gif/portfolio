@@ -46,12 +46,11 @@ PROFILE = {
             ]
         }
     ],
-    "skills": {
-        "Frameworks": "FastAPI, Flask, Django, React, Pandas, NumPy, Scikit-learn",
-        "Programming": "Python, JavaScript, SQL, HTML5, CSS3",
-        "Databases & Cloud": "MongoDB Atlas, SQLite, MySQL, Docker, Vercel, Render",
-        "Analytics & ML": "Natural Language Processing (NLP), Data Cleaning, Financial Modeling, Statistical Analysis",
-        "Developer Tools": "Git, GitHub, VS Code, Postman, Linux CLI",
+        "skills": {
+        "Programming Languages": "Python, JavaScript (ES6+), SQL, HTML5, CSS3, PHP",
+        "Frameworks & Libraries": "FastAPI, Flask, Django, React.js, Tailwind CSS, Bootstrap",
+        "AI & Machine Learning": "Natural Language Processing (NLP), TF-IDF, Cosine Similarity, Scikit-Learn, Pandas, NumPy, Data Cleaning",
+        "Databases & Cloud": "MongoDB Atlas, Render, Vercel, MySQL, SQLite, Docker, Git, GitHub, Postman",
     },
     "soft_skills": ["Analytical Problem Solving", "System Architecture", "Technical Communication", "Team Collaboration", "Agile Adaptability"],
     "certifications": [
