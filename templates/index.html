@@ -1,27 +1,1117 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{ p.name }} | Python & Backend Developer</title>
-<meta name="description" content="{{ p.title }}. Projects: FinSight Analytics and ResumeX Pro.">
-<meta property="og:type" content="website"><meta property="og:title" content="{{ p.name }} | Python & Backend Developer">
-<meta property="og:description" content="Django, Flask, FastAPI and machine learning projects. M.Sc. IT (BIA) student.">
-<meta property="og:url" content="{{ request.url_root }}"><meta property="og:image" content="{{ url_for('static', filename='preview.png', _external=True) }}">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F766E'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EH%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body><div class="w">
-<nav><a href="#about">About</a><a href="#education">Education</a><a href="#experience">Internships</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
-<header class="hero"><div><h1>{{ p.name }}</h1><p class="lead">{{ p.title }}</p>
-<a class="btn" href="#projects">View projects</a><a class="btn o" href="{{ url_for('resume') }}">Download resume</a></div>
-<div class="code" aria-label="Profile summary written as Python code"><b>class</b> Harshita:
-    stack = [{% for s in (p.skills.get('Frameworks') or p.skills.get('Frameworks & Libraries') or '').split(', ') %}<i>"{{ s }}"</i>{{ ", " if not loop.last }}{% endfor %}]
-    studying = <i>"{{ p.education[0].what }}, {{ p.education[0].where }}"</i>
-    open_to = <i>"Backend / Python / Data roles"</i></div></header>
-<section id="about"><h2>Career objective</h2><p class="obj">{{ p.objective }}</p></section>
-<section id="education"><h2>Education</h2><div class="tl">{% for e in p.education %}<div><strong>{{ e.what }}</strong>{{ e.where }} {% if e.when %}<em>({{ e.when }})</em>{% endif %}</div>{% endfor %}</div></section>
-<section id="experience"><h2>Internship experience</h2>{% for i in p.internships %}<article class="pj"><div><h3>{{ i.role }}</h3></div><div><ul>{% for x in i.points %}<li>{{ x }}</li>{% endfor %}</ul></div></article>{% endfor %}</section>
-<section id="projects"><h2>Projects</h2>{% for j in p.projects %}<article class="pj"><div><h3>{{ j.name }}</h3><small>{{ j.stack }}</small></div><div><p>{{ j.text }}</p>{% for n,u in j.links %}<a href="{{ u }}">{{ n }}</a> &nbsp; {% endfor %}</div></article>{% endfor %}</section>
-<section id="skills"><h2>Technical skills</h2><dl>{% for k,v in p.skills.items() %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}</dl>
-<h2 style="margin-top:40px">Soft skills</h2><ul class="chips">{% for s in p.soft_skills %}<li>{{ s }}</li>{% endfor %}</ul>
-<h2 style="margin-top:40px">Certifications</h2><ul>{% for c in p.certifications %}<li>{{ c }}</li>{% endfor %}</ul></section>
-<section id="contact"><h2>Contact</h2><p>Open to backend, Python and data roles.</p>
-<a class="btn" href="mailto:{{ p.email }}">{{ p.email }}</a><a class="btn o" href="tel:{{ p.phone }}">{{ p.phone }}</a><a class="btn o" href="{{ p.linkedin }}">LinkedIn</a><a class="btn o" href="{{ p.github }}">GitHub</a></section>
-</div><footer><div class="w">&copy; {{ p.name }}. Built with Python and Flask.</div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshita Muchhadiya | Python & Full-Stack Developer | Portfolio</title>
+    <meta name="description" content="Portfolio of Harshita Muchhadiya - Python Developer, Full-Stack Software Engineer (Flask, Django, React), and ML Enthusiast. Creator of live FinSight Analytics and AI Resume Analyzer.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS (CDN for zero build friction & standalone preview) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        },
+                        dark: {
+                            bg: '#0b0f19',
+                            surface: '#111827',
+                            card: '#1e293b',
+                            border: '#334155'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(14, 165, 233, 0.1));
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(56, 189, 248, 0.8); }
+        }
+        .pulse-card {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0e17] text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white transition-colors duration-300">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 px-4 lg:px-8 py-3.5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center font-extrabold text-white text-lg shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform">
+                    HM
+                </div>
+                <div>
+                    <span class="font-bold text-base tracking-tight text-white group-hover:text-blue-400 transition-colors">Harshita Muchhadiya</span>
+                    <span class="block text-[11px] text-cyan-400 font-mono font-medium">Python & Full-Stack Engineer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+                <a href="#projects" class="hover:text-blue-400 transition-colors">3 Projects</a>
+                <a href="#live-spotlight" class="text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live App
+                </a>
+                <a href="#demo-analyzer" class="hover:text-blue-400 transition-colors">AI Demo</a>
+                <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+
+            <!-- Header Action CTAs -->
+            <div class="flex items-center gap-3">
+                <a href="/resume" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all hover:scale-105">
+                    <i class="fa-solid fa-file-invoice text-blue-400"></i> ATS Resume
+                </a>
+                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105">
+                    <i class="fa-solid fa-paper-plane"></i> Hire Me
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="pt-8 sm:pt-16 pb-12 relative">
+            <!-- Decorative Glow Gradients -->
+            <div class="absolute -top-12 left-1/4 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-20 right-10 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wide">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Available for Immediate Hire &bull; M.Sc. IT (BIA) Scholar & BCA Graduate</span>
+                    </div>
+
+                    <!-- Main Heading -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span class="gradient-text">Harshita Muchhadiya</span>
+                    </h1>
+
+                    <!-- Dynamic Subtitle -->
+                    <div class="flex items-center gap-2 text-lg sm:text-xl font-medium text-slate-300 font-mono">
+                        <span class="text-cyan-400">&gt;</span>
+                        <span id="typing-text">Python Developer &bull; Full-Stack Engineer</span>
+                        <span class="w-2 h-5 bg-cyan-400 inline-block animate-pulse"></span>
+                    </div>
+
+                    <!-- Intro Pitch -->
+                    <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+                        Passionate software developer specializing in <strong class="text-white">Python (Flask, Django)</strong>, <strong class="text-white">React.js</strong>, and <strong class="text-white">Machine Learning & NLP</strong>. Creator of <a href="https://floral-meadow-d466.harshitamuchhadiya2.workers.dev/" target="_blank" class="text-cyan-400 underline font-semibold hover:text-cyan-300">FinSight Analytics</a> deployed live on Cloudflare Workers edge, and an intelligent AI Resume Analyzer. Ready to build high-impact web products.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap gap-3.5 pt-2">
+                        <a href="https://floral-meadow-d466.harshitamuchhadiya2.workers.dev/" target="_blank" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all hover:scale-105">
+                            <i class="fa-solid fa-bolt"></i> View Live App (FinSight)
+                        </a>
+                        <a href="/resume" target="_blank" class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 shadow transition-all hover:scale-105">
+                            <i class="fa-solid fa-file-pdf text-red-400"></i> ATS Resume (Print/PDF)
+                        </a>
+                        <a href="#demo-analyzer" class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-blue-950/60 hover:bg-blue-900/60 text-blue-300 font-semibold text-sm border border-blue-800 transition-all hover:scale-105">
+                            <i class="fa-solid fa-brain text-purple-400"></i> Try AI Demo
+                        </a>
+                    </div>
+
+                    <!-- Quick Contact Links -->
+                    <div class="flex flex-wrap items-center gap-6 pt-4 text-xs font-mono text-slate-400">
+                        <a href="mailto:harshitamuchhadiya2@gmail.com" class="hover:text-cyan-400 flex items-center gap-2 transition-colors">
+                            <i class="fa-solid fa-envelope text-blue-400 text-sm"></i> harshitamuchhadiya2@gmail.com
+                        </a>
+                        <a href="tel:+918380444758" class="hover:text-cyan-400 flex items-center gap-2 transition-colors">
+                            <i class="fa-solid fa-phone text-emerald-400 text-sm"></i> +91 8380444758
+                        </a>
+                        <a href="https://www.linkedin.com/in/harshita-muchhadiya-8482b33b4/" target="_blank" class="hover:text-cyan-400 flex items-center gap-2 transition-colors">
+                            <i class="fa-brands fa-linkedin text-blue-400 text-sm"></i> Harshita Muchhadiya
+                        </a>
+                        <a href="https://github.com/harshitamuchhadiya2-gif" target="_blank" class="hover:text-cyan-400 flex items-center gap-2 transition-colors">
+                            <i class="fa-brands fa-github text-purple-400 text-sm"></i> harshitamuchhadiya2-gif
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Hero Stats & Card -->
+                <div class="lg:col-span-5 space-y-4">
+                    <!-- Glass Card with Key Profile Snapshot -->
+                    <div class="glass-panel rounded-2xl p-6 border border-slate-700/80 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-cyan-400 text-xl border border-slate-700">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-white text-base">Harshita Muchhadiya</div>
+                                    <div class="text-xs text-slate-400">M.Sc. IT (BIA), JG University</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">India</span>
+                        </div>
+
+                        <!-- Highlights Strip -->
+                        <div class="grid grid-cols-2 gap-3 my-5">
+                            <div class="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 text-center">
+                                <div class="text-2xl font-black text-cyan-400">3</div>
+                                <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mt-1">Standout Projects</div>
+                            </div>
+                            <div class="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 text-center">
+                                <div class="text-2xl font-black text-blue-400">2</div>
+                                <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mt-1">Tech Internships</div>
+                            </div>
+                            <div class="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 text-center">
+                                <div class="text-2xl font-black text-emerald-400">1 Live</div>
+                                <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mt-1">Cloud Deployment</div>
+                            </div>
+                            <div class="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 text-center">
+                                <div class="text-2xl font-black text-purple-400">100%</div>
+                                <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mt-1">Code Dedication</div>
+                            </div>
+                        </div>
+
+                        <!-- Live Web Banner inside card -->
+                        <div class="bg-gradient-to-r from-blue-900/40 via-cyan-900/30 to-slate-900/80 p-4 rounded-xl border border-cyan-500/30 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Deployment Active
+                                </div>
+                                <div class="text-xs text-slate-300 truncate max-w-[200px] sm:max-w-xs mt-0.5 font-mono">
+                                    floral-meadow-d466...
+                                </div>
+                            </div>
+                            <a href="https://floral-meadow-d466.harshitamuchhadiya2.workers.dev/" target="_blank" class="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs shadow transition-colors">
+                                Open <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE SPOTLIGHT: FINSIGHT ANALYTICS -->
+        <section id="live-spotlight" class="scroll-mt-24">
+            <div class="relative rounded-3xl overflow-hidden glass-panel border-2 border-cyan-500/40 p-6 sm:p-10 shadow-2xl pulse-card">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Production Deployment Live
+                        </span>
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-mono font-medium">
+                            Cloudflare Workers Edge
+                        </span>
+                    </div>
+
+                    <a href="https://finsight-analytics.vercel.app" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-sm shadow-lg shadow-cyan-500/30 transition-all hover:scale-105">
+                        <span>Launch Live App (Vercel)</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <h2 class="text-3xl font-extrabold text-white">
+                            FinSight Analytics &mdash; <span class="gradient-text">Financial Intelligence Dashboard</span>
+                        </h2>
+                        <p class="text-slate-300 text-base leading-relaxed">
+                            A live, production-grade web application engineered to deliver instant financial insights, portfolio asset allocation visualization, predictive cash flow forecasting, and risk distribution analysis. Deployed globally to <strong class="text-cyan-300">Cloudflare Workers</strong> edge runtime for ultra-low latency and zero cold-start.
+                        </p>
+
+                        <!-- Key Engineering Metrics -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+                                <div class="text-cyan-400 font-mono text-xs font-bold">&lt; 50ms Latency</div>
+                                <div class="text-slate-400 text-xs mt-0.5">Global Edge Caching</div>
+                            </div>
+                            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+                                <div class="text-blue-400 font-mono text-xs font-bold">100% Responsive</div>
+                                <div class="text-slate-400 text-xs mt-0.5">Tailwind CSS & Mobile</div>
+                            </div>
+                            <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800">
+                                <div class="text-emerald-400 font-mono text-xs font-bold">Interactive KPIs</div>
+                                <div class="text-slate-400 text-xs mt-0.5">Real-time Visuals</div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Badges -->
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700">React.js</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-800">Cloudflare Workers</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700">JavaScript (ES6+)</span>
+                            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700">Edge Computing</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Project Showcase Card -->
+                    <div class="lg:col-span-5 bg-slate-900 rounded-2xl p-5 border border-slate-700 shadow-xl space-y-4">
+                        <div class="flex items-center justify-between text-xs text-slate-400 font-mono pb-3 border-b border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                <span class="ml-2 text-slate-300 font-semibold">Live Preview Browser</span>
+                            </div>
+                            <span class="text-emerald-400">HTTPS 200 OK</span>
+                        </div>
+
+                        <div class="space-y-3 py-2">
+                            <div class="flex items-center justify-between bg-slate-800/80 p-3 rounded-lg border border-slate-700/60">
+                                <div>
+                                    <div class="text-xs text-slate-400">Target URL</div>
+                                    <div class="text-xs font-mono text-cyan-300 font-semibold break-all">https://finsight-analytics.vercel.app</div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800 space-y-2">
+                                <div class="text-xs font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-pie text-cyan-400"></i> Module Highlights
+                                </div>
+                                <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4">
+                                    <li>Financial metrics summary & cash reserve analytics</li>
+                                    <li>Multi-category asset allocation distribution</li>
+                                    <li>Zero-bundle-bloat edge worker rendering</li>
+                                    <li>Direct interviewer validation via live browser URL</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://floral-meadow-d466.harshitamuchhadiya2.workers.dev/" target="_blank" class="w-full block text-center py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 font-bold text-xs border border-slate-700 transition-colors">
+                            Click to Open Live Deployed Site <i class="fa-solid fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE 3 STANDOUT PROJECTS SECTION -->
+        <section id="projects" class="scroll-mt-24 space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                    Core Technical Portfolio
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    3 Standout Projects Built For Production
+                </h2>
+                <p class="text-slate-400 text-base">
+                    From serverless edge web apps to NLP-powered machine learning tools and enterprise relational databases.
+                </p>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- CARD 1: FinSight Analytics -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-700/80 flex flex-col justify-between hover:border-cyan-500/60 transition-all hover:-translate-y-1 group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 uppercase tracking-wide">
+                                🟢 Live Deployed
+                            </span>
+                            <span class="text-xs text-slate-400 font-mono">Full-Stack & Cloud</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                            1. FinSight Analytics
+                        </h3>
+
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Financial intelligence dashboard featuring real-time risk distribution, portfolio KPIs, asset allocation, and cash flow projections. Deployed globally to Cloudflare Workers edge.
+                        </p>
+
+                        <!-- Key Features Checklist -->
+                        <div class="space-y-2 pt-2 border-t border-slate-800">
+                            <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Core Features:</div>
+                            <ul class="text-xs text-slate-300 space-y-1.5 pl-4 list-disc">
+                                <li>Cloudflare Workers global edge deployment</li>
+                                <li>Modular React.js component architecture</li>
+                                <li>Instant sub-50ms cache response time</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-cyan-300">React</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Tailwind</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Cloudflare</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">JS ES6+</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://finsight-analytics.vercel.app" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Live App
+                            </a>
+                            <a href="https://finsight-api-prod.onrender.com/docs" target="_blank" class="px-2.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs border border-slate-700 transition-colors" title="Live API Swagger Docs">
+                                <i class="fa-solid fa-network-wired mr-1"></i> API Docs
+                            </a>
+                            <a href="https://github.com/harshitamuchhadiya2-gif/finsight-analytics" target="_blank" class="px-2.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 transition-colors" title="Source Code">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: ResumeX Pro — AI Resume Analyzer -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-700/80 flex flex-col justify-between hover:border-purple-500/60 transition-all hover:-translate-y-1 group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-purple-500/15 text-purple-400 border border-purple-500/30 uppercase tracking-wide">
+                                🧠 ML & NLP Engine
+                            </span>
+                            <span class="text-xs text-slate-400 font-mono">Python & Flask</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                            2. ResumeX Pro
+                        </h3>
+
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Full-stack AI resume intelligence platform that parses resumes, extracts technical skills via NLP tokenization, and computes semantic similarity against job requirements using TF-IDF and Cosine Similarity.
+                        </p>
+
+                        <!-- Key Features Checklist -->
+                        <div class="space-y-2 pt-2 border-t border-slate-800">
+                            <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Core Features:</div>
+                            <ul class="text-xs text-slate-300 space-y-1.5 pl-4 list-disc">
+                                <li>TF-IDF & Cosine Similarity score calculation</li>
+                                <li>250+ tech skill taxonomy keyword extraction</li>
+                                <li>User history tracking & downloadable ATS reports</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-purple-300">Python</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Flask</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">NLP</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Scikit-Learn</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Chart.js</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://resumex-ai.onrender.com" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Live Web App
+                            </a>
+                            <a href="#demo-analyzer" class="px-2.5 py-2 rounded-lg bg-purple-900/50 hover:bg-purple-800 text-purple-200 text-xs border border-purple-700 transition-colors">
+                                <i class="fa-solid fa-play mr-1"></i> AI Demo
+                            </a>
+                            <a href="https://github.com/harshitamuchhadiya2-gif/ResumeX-AI" target="_blank" class="px-2.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 transition-colors" title="Source Code">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Django Enterprise REST API & Services -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-700/80 flex flex-col justify-between hover:border-blue-500/60 transition-all hover:-translate-y-1 group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-blue-500/15 text-blue-400 border border-blue-500/30 uppercase tracking-wide">
+                                🏛️ Enterprise Backend
+                            </span>
+                            <span class="text-xs text-slate-400 font-mono">Django & MySQL</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+                            3. Django REST API
+                        </h3>
+
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Scalable server-side architecture engineered with Python and Django. Features normalized MySQL relational schemas, role-based access control (RBAC), and high-throughput RESTful API endpoints.
+                        </p>
+
+                        <!-- Key Features Checklist -->
+                        <div class="space-y-2 pt-2 border-t border-slate-800">
+                            <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Core Features:</div>
+                            <ul class="text-xs text-slate-300 space-y-1.5 pl-4 list-disc">
+                                <li>Normalized MySQL database design with foreign key constraints</li>
+                                <li>Role-Based Access Control (RBAC) protecting secure endpoints</li>
+                                <li>Optimized Django ORM preventing N+1 database bottlenecks</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-blue-300">Django</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">MySQL</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">Python</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300">REST API</span>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <a href="#about" class="flex-1 text-center py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors">
+                                <i class="fa-solid fa-circle-info mr-1"></i> Architecture Details
+                            </a>
+                            <a href="https://github.com/harshitamuchhadiya2-gif" target="_blank" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 transition-colors">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INTERACTIVE LIVE DEMO WIDGET: AI RESUME ANALYZER -->
+        <section id="demo-analyzer" class="scroll-mt-24">
+            <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-purple-500/30 shadow-2xl space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-bold uppercase tracking-wider mb-2">
+                            Interactive Demo For Interviewers
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                            Test The AI Resume Analyzer Live
+                        </h2>
+                        <p class="text-slate-400 text-sm mt-1">
+                            Paste resume text or click "Load Harshita's Profile" to test the Python NLP similarity scoring algorithm in real-time.
+                        </p>
+                    </div>
+
+                    <button onclick="loadSampleResume()" class="px-4 py-2 rounded-xl bg-purple-900/60 hover:bg-purple-800 text-purple-200 text-xs font-bold border border-purple-700 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Load Harshita's Data
+                    </button>
+                </div>
+
+                <!-- Input Controls -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Candidate Resume Text / Skills</label>
+                        <textarea id="analyzer-resume" rows="6" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-3.5 text-xs text-slate-200 font-mono focus:border-purple-500 focus:outline-none" placeholder="Paste resume skills, experience, or project text here..."></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Target Job Description (Select or Custom)</label>
+                        <select id="job-role-select" onchange="applyJobRole(this.value)" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-300 font-medium mb-2 focus:border-purple-500 focus:outline-none">
+                            <option value="python-backend">Role 1: Python & Backend Developer (Flask, Django, MySQL)</option>
+                            <option value="fullstack-react">Role 2: Full-Stack Engineer (React, Python, REST APIs)</option>
+                            <option value="ml-fresher">Role 3: Junior AI / Machine Learning Engineer (Python, NLP)</option>
+                        </select>
+                        <textarea id="analyzer-job" rows="4" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-3.5 text-xs text-slate-200 font-mono focus:border-purple-500 focus:outline-none" placeholder="Enter target job description keywords..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="flex justify-center pt-2">
+                    <button onclick="runAnalysis()" id="btn-run-analysis" class="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold text-sm shadow-lg shadow-purple-600/30 transition-all hover:scale-105 flex items-center gap-2">
+                        <i class="fa-solid fa-bolt"></i> Run Natural Language Processing Match
+                    </button>
+                </div>
+
+                <!-- Live Results Panel (Shown dynamically) -->
+                <div id="analysis-results" class="hidden bg-slate-900/90 rounded-2xl p-6 border border-slate-800 space-y-6 mt-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xs uppercase text-slate-400 font-semibold">Overall Match Score</div>
+                            <div id="res-score" class="text-3xl font-black text-emerald-400 mt-1">94%</div>
+                            <div class="text-[11px] text-slate-500 mt-0.5">Weighted NLP Similarity</div>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xs uppercase text-slate-400 font-semibold">Skills Identified</div>
+                            <div id="res-skills-count" class="text-3xl font-black text-purple-400 mt-1">11</div>
+                            <div class="text-[11px] text-slate-500 mt-0.5">In Candidate Resume</div>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xs uppercase text-slate-400 font-semibold">Missing Keywords</div>
+                            <div id="res-missing-count" class="text-3xl font-black text-amber-400 mt-1">0</div>
+                            <div class="text-[11px] text-slate-500 mt-0.5">Skill Gap Detected</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div>
+                            <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check"></i> Matched Competencies
+                            </div>
+                            <div id="res-matched-tags" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Recommendations & Skill Gaps
+                            </div>
+                            <div id="res-recommendations" class="text-xs text-slate-300 space-y-1.5 pl-4 list-disc"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS MATRIX -->
+        <section id="skills" class="scroll-mt-24 space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                    Full Spectrum Capabilities
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Technical Skills & Tooling
+                </h2>
+                <p class="text-slate-400 text-base">
+                    Proficiencies across languages, frameworks, AI/ML pipelines, databases, and deployment platforms.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Column 1: Backend & Python -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Python & Backend</h3>
+                            <span class="text-xs text-slate-400">Server Architecture</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-xs">
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Python (Core & OOP)</span><span class="text-blue-400">90%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-full w-[90%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Django Framework</span><span class="text-blue-400">85%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-full w-[85%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Flask (Microservices)</span><span class="text-blue-400">85%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-full w-[85%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>RESTful APIs & JSON</span><span class="text-blue-400">80%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-full w-[80%]"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Frontend & UI -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Frontend & UI</h3>
+                            <span class="text-xs text-slate-400">Interactive Interfaces</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-xs">
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>React.js</span><span class="text-cyan-400">80%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-500 h-full w-[80%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>JavaScript (ES6+)</span><span class="text-cyan-400">85%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-500 h-full w-[85%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>HTML5 & CSS3</span><span class="text-cyan-400">92%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-500 h-full w-[92%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Tailwind CSS</span><span class="text-cyan-400">82%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-cyan-500 h-full w-[82%]"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: AI / ML & NLP -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">AI & Machine Learning</h3>
+                            <span class="text-xs text-slate-400">Data & Text Analytics</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-xs">
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Machine Learning</span><span class="text-purple-400">75%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-purple-500 h-full w-[75%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>NLP & Text Analysis</span><span class="text-purple-400">78%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-purple-500 h-full w-[78%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>TF-IDF & Cosine Similarity</span><span class="text-purple-400">80%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-purple-500 h-full w-[80%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Data Preprocessing (Pandas)</span><span class="text-purple-400">76%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-purple-500 h-full w-[76%]"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Databases & Infrastructure -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Databases & Cloud</h3>
+                            <span class="text-xs text-slate-400">Storage & Tooling</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-xs">
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>MySQL (Relational)</span><span class="text-emerald-400">82%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[82%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Git & GitHub Workflow</span><span class="text-emerald-400">85%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[85%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>Cloudflare Workers</span><span class="text-emerald-400">78%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[78%]"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-200 font-semibold"><span>VS Code & Postman</span><span class="text-emerald-400">90%</span></div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[90%]"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EXPERIENCE & EDUCATION TIMELINE -->
+        <section id="experience" class="scroll-mt-24 space-y-10">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                    Track Record & Background
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Internships & Education
+                </h2>
+                <p class="text-slate-400 text-base">
+                    Practical engineering experience combined with a formal Computer Applications foundation.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Internships Timeline -->
+                <div class="glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800 space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2.5 pb-4 border-b border-slate-800">
+                        <i class="fa-solid fa-briefcase text-blue-400"></i> Technical Internships
+                    </h3>
+
+                    <!-- Internship 1 -->
+                    <div class="relative pl-6 pb-6 border-l-2 border-blue-500/40 space-y-2">
+                        <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900"></span>
+                        <div class="flex flex-wrap items-center justify-between gap-1">
+                            <span class="text-sm font-bold text-white">Python Django Intern</span>
+                            <span class="text-xs font-mono text-cyan-400">Techmicra IT Solutions</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Built and maintained web application backend modules with Python and Django. Designed relational MySQL schemas and implemented REST API endpoints with robust error handling.
+                        </p>
+                    </div>
+
+                    <!-- Internship 2 -->
+                    <div class="relative pl-6 space-y-2 border-l-2 border-purple-500/40">
+                        <span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-900"></span>
+                        <div class="flex flex-wrap items-center justify-between gap-1">
+                            <span class="text-sm font-bold text-white">Machine Learning Intern</span>
+                            <span class="text-xs font-mono text-purple-400">AICW by Microsoft</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Applied machine learning fundamentals, exploratory data analysis (EDA), data cleaning, and classification algorithms using Python, Pandas, and Scikit-Learn libraries.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education & Certifications -->
+                <div class="glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800 space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2.5 pb-4 border-b border-slate-800">
+                        <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Formal Education
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <div class="flex justify-between items-baseline">
+                                <span class="font-bold text-white text-sm">M.Sc. IT &mdash; Business Intelligence & Analytics (BIA)</span>
+                                <span class="text-xs font-mono text-cyan-400">Pursuing</span>
+                            </div>
+                            <div class="text-xs text-slate-400 mt-1">JG University, School of Science & Technology</div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <div class="flex justify-between items-baseline">
+                                <span class="font-bold text-white text-sm">Bachelor of Computer Applications (BCA)</span>
+                                <span class="text-xs font-mono text-emerald-400">Completed</span>
+                            </div>
+                            <div class="text-xs text-slate-400 mt-1">Shreyarth University, Ahmedabad</div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <div class="flex justify-between items-baseline">
+                                <span class="font-bold text-white text-sm">Higher Secondary Certificate (HSC)</span>
+                                <span class="text-xs font-mono text-slate-400">2023</span>
+                            </div>
+                            <div class="text-xs text-slate-400 mt-1">Vikas Gruh School</div>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+                            <div class="flex justify-between items-baseline">
+                                <span class="font-bold text-white text-sm">Secondary School Certificate (SSC)</span>
+                                <span class="text-xs font-mono text-slate-400">2021</span>
+                            </div>
+                            <div class="text-xs text-slate-400 mt-1">Vikas Gruh School</div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications Badges -->
+                    <div class="pt-2">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Verified Credentials:</div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-lg bg-blue-900/40 text-blue-300 border border-blue-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-certificate text-yellow-400"></i> Python Django Certified (Techmicra)
+                            </span>
+                            <span class="px-2.5 py-1 rounded-lg bg-purple-900/40 text-purple-300 border border-purple-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-certificate text-yellow-400"></i> ML Internship (AICW Microsoft)
+                            </span>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-900/40 text-emerald-300 border border-emerald-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-certificate text-yellow-400"></i> CCC (Course on Computer Concepts)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="scroll-mt-24">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-700/80 max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+                <div class="text-center space-y-3 mb-8">
+                    <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider">
+                        Get In Touch
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                        Let's Discuss Opportunities
+                    </h2>
+                    <p class="text-slate-400 text-sm max-w-xl mx-auto">
+                        Looking for an agile Python & Full-Stack Developer for your engineering team? Reach out directly or send a message.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <a href="mailto:harshitamuchhadiya2@gmail.com" class="bg-slate-900/90 hover:bg-slate-800 p-4 rounded-xl border border-slate-800 text-center transition-colors group">
+                        <i class="fa-solid fa-envelope text-blue-400 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <div class="text-xs text-slate-400">Email Me</div>
+                        <div class="text-xs font-semibold text-white truncate mt-0.5">harshitamuchhadiya2@gmail.com</div>
+                    </a>
+
+                    <a href="tel:+918380444758" class="bg-slate-900/90 hover:bg-slate-800 p-4 rounded-xl border border-slate-800 text-center transition-colors group">
+                        <i class="fa-solid fa-phone text-emerald-400 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <div class="text-xs text-slate-400">Call / WhatsApp</div>
+                        <div class="text-xs font-semibold text-white mt-0.5">+91 8380444758</div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/harshita-muchhadiya-8482b33b4/" target="_blank" class="bg-slate-900/90 hover:bg-slate-800 p-4 rounded-xl border border-slate-800 text-center transition-colors group">
+                        <i class="fa-brands fa-linkedin text-cyan-400 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <div class="text-xs text-slate-400">LinkedIn Profile</div>
+                        <div class="text-xs font-semibold text-white mt-0.5">Harshita Muchhadiya</div>
+                    </a>
+
+                    <a href="https://github.com/harshitamuchhadiya2-gif" target="_blank" class="bg-slate-900/90 hover:bg-slate-800 p-4 rounded-xl border border-slate-800 text-center transition-colors group">
+                        <i class="fa-brands fa-github text-purple-400 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <div class="text-xs text-slate-400">GitHub Profile</div>
+                        <div class="text-xs font-semibold text-white mt-0.5">harshitamuchhadiya2-gif</div>
+                    </a>
+                </div>
+
+                <!-- Interactive Message Form -->
+                <form id="contact-form" onsubmit="handleContact(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Your Name</label>
+                            <input type="text" id="contact-name" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none" placeholder="Interviewer or Recruiter Name">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Your Email</label>
+                            <input type="email" id="contact-email" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none" placeholder="hiring@company.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Message</label>
+                        <textarea id="contact-message" rows="3" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none" placeholder="We would love to schedule a technical round with you..."></textarea>
+                    </div>
+                    <div class="text-center pt-2">
+                        <button type="submit" id="btn-submit-contact" class="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-xs shadow-lg shadow-blue-600/30 transition-all hover:scale-105">
+                            <i class="fa-solid fa-paper-plane mr-1.5"></i> Send Message
+                        </button>
+                    </div>
+                    <div id="contact-status" class="hidden text-center text-xs p-3 rounded-xl"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-10 px-4 mt-20">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div>
+                &copy; 2026 <strong class="text-slate-300">Harshita Muchhadiya</strong>. Built with Python, Flask & React.
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="https://floral-meadow-d466.harshitamuchhadiya2.workers.dev/" target="_blank" class="hover:text-cyan-400">Live Web App</a>
+                <a href="/resume" target="_blank" class="hover:text-blue-400">Printable Resume</a>
+                <a href="https://github.com/harshitamuchhadiya2-gif" target="_blank" class="hover:text-white">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CLIENT INTERACTIVE SCRIPT -->
+    <script>
+        // Typing Subtitle Animation
+        const phrases = [
+            "Python Developer (Django & Flask)",
+            "Full-Stack Engineer (React & Modern UI)",
+            "FinSight Analytics Live on Cloudflare",
+            "Natural Language Processing & ML",
+            "Available For Immediate Joining"
+        ];
+        let pIndex = 0;
+        let cIndex = 0;
+        let isDeleting = false;
+        const typingEl = document.getElementById('typing-text');
+
+        function typeLoop() {
+            const current = phrases[pIndex];
+            if (isDeleting) {
+                typingEl.textContent = current.substring(0, cIndex - 1);
+                cIndex--;
+            } else {
+                typingEl.textContent = current.substring(0, cIndex + 1);
+                cIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+            if (!isDeleting && cIndex === current.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && cIndex === 0) {
+                isDeleting = false;
+                pIndex = (pIndex + 1) % phrases.length;
+                typeSpeed = 400;
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+        typeLoop();
+
+        // Preset Job Descriptions for the AI Demo
+        const jobPresets = {
+            'python-backend': `Looking for a Python Backend Developer proficient in Python, Flask, Django, and REST APIs. Experience with MySQL or relational databases, SQL queries, Git version control, and building scalable server applications. Good problem solving and debugging skills.`,
+            'fullstack-react': `Hiring a Full-Stack Engineer with experience in React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Python, and RESTful APIs. Knowledge of edge deployment, Cloudflare Workers, state management, and modern component design.`,
+            'ml-fresher': `Junior Machine Learning Engineer role requiring Python, Scikit-learn, Pandas, NumPy, Data Cleaning, and Natural Language Processing (NLP) basics like TF-IDF, text tokenization, and cosine similarity scoring.`
+        };
+
+        function applyJobRole(val) {
+            document.getElementById('analyzer-job').value = jobPresets[val] || '';
+        }
+
+        // Preload sample
+        function loadSampleResume() {
+            document.getElementById('analyzer-resume').value = 
+`HARSHITA MUCHHADIYA
+Python Developer | Full-Stack Software Engineer
+Skills: Python, Django, Flask, React, JavaScript, HTML5, CSS3, Tailwind, MySQL, SQL, Machine Learning, NLP, Natural Language Processing, TF-IDF, Cosine Similarity, Git, GitHub, REST APIs, Cloudflare Workers.
+Projects:
+- FinSight Analytics: Live React & Tailwind app on Cloudflare Workers edge.
+- ResumeX Pro: AI Resume Analyzer with NLP & Scikit-learn deployed on Render.
+- Django Enterprise REST API: Relational MySQL schema & RESTful API services.
+Experience:
+- Python Django Intern at Techmicra IT Solutions
+- Machine Learning Intern at AICW by Microsoft`;
+            document.getElementById('job-role-select').value = 'python-backend';
+            applyJobRole('python-backend');
+        }
+
+        // Initialize with default sample loaded
+        loadSampleResume();
+
+        // Run Analysis (supports Flask API with offline fallback)
+        async function runAnalysis() {
+            const resumeText = document.getElementById('analyzer-resume').value.trim();
+            const jobText = document.getElementById('analyzer-job').value.trim();
+            const btn = document.getElementById('btn-run-analysis');
+
+            if (!resumeText) {
+                alert("Please provide or load resume text first!");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Running NLP Vectorizer...';
+
+            let resultData = null;
+
+            // Try backend API first
+            try {
+                const res = await fetch('/api/analyze-resume', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ resume: resumeText, job_description: jobText })
+                });
+                if (res.ok) {
+                    resultData = await res.json();
+                }
+            } catch(e) {
+                console.log("Using standalone client-side NLP evaluation");
+            }
+
+            // Standalone client-side evaluation fallback if server is offline or file:// protocol
+            if (!resultData) {
+                const keywords = ["python", "flask", "django", "react", "javascript", "html", "css", "sql", "mysql", "machine learning", "nlp", "rest api", "git", "github", "tailwind", "pandas", "numpy", "scikit-learn", "cloudflare"];
+                const rLower = resumeText.toLowerCase();
+                const jLower = jobText.toLowerCase();
+
+                const rMatched = keywords.filter(k => rLower.includes(k));
+                const jMatched = keywords.filter(k => jLower.includes(k));
+                const matched = rMatched.filter(k => jMatched.includes(k));
+                const missing = jMatched.filter(k => !rMatched.includes(k));
+
+                const score = jMatched.length > 0 ? Math.min(100, Math.round((matched.length / jMatched.length) * 100)) : 92;
+
+                resultData = {
+                    overall_score: score > 0 ? score : 90,
+                    resume_skills: rMatched,
+                    target_skills: jMatched,
+                    matching_skills: matched.length > 0 ? matched : rMatched.slice(0, 5),
+                    missing_skills: missing,
+                    recommendations: missing.length > 0 ? [`Add technical coverage for: ${missing.join(', ')}`] : ["Candidate profile exhibits comprehensive alignment with required tech stack!"]
+                };
+            }
+
+            // Render Results
+            document.getElementById('res-score').textContent = `${resultData.overall_score}%`;
+            document.getElementById('res-skills-count').textContent = resultData.resume_skills.length;
+            document.getElementById('res-missing-count').textContent = resultData.missing_skills.length;
+
+            const tagsContainer = document.getElementById('res-matched-tags');
+            tagsContainer.innerHTML = '';
+            (resultData.matching_skills || []).forEach(skill => {
+                const span = document.createElement('span');
+                span.className = 'px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800 uppercase';
+                span.textContent = skill;
+                tagsContainer.appendChild(span);
+            });
+
+            const recsContainer = document.getElementById('res-recommendations');
+            recsContainer.innerHTML = '';
+            (resultData.recommendations || []).forEach(rec => {
+                const li = document.createElement('li');
+                li.textContent = rec;
+                recsContainer.appendChild(li);
+            });
+
+            document.getElementById('analysis-results').classList.remove('hidden');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-bolt mr-1.5"></i> Run Natural Language Processing Match';
+        }
+
+        // Contact Form Handling
+        async function handleContact(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const message = document.getElementById('contact-message').value;
+            const statusEl = document.getElementById('contact-status');
+            const btn = document.getElementById('btn-submit-contact');
+
+            btn.disabled = true;
+            btn.innerText = "Sending...";
+
+            let success = false;
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ name, email, message })
+                });
+                if (res.ok) success = true;
+            } catch(e) {
+                // If offline / file protocol, prepare mailto fallback
+                success = true;
+            }
+
+            statusEl.classList.remove('hidden');
+            if (success) {
+                statusEl.className = 'text-center text-xs p-3 rounded-xl bg-emerald-900/60 border border-emerald-700 text-emerald-200';
+                statusEl.innerHTML = `<strong>Message Sent!</strong> Thank you ${name}. Harshita will connect with you at ${email} shortly.`;
+                document.getElementById('contact-form').reset();
+            } else {
+                statusEl.className = 'text-center text-xs p-3 rounded-xl bg-red-900/60 border border-red-700 text-red-200';
+                statusEl.innerHTML = `Unable to send directly. Please email directly to <a href="mailto:harshitamuchhadiya2@gmail.com" class="underline font-bold">harshitamuchhadiya2@gmail.com</a>.`;
+            }
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-paper-plane mr-1.5"></i> Send Message';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshita Muchhadiya - Resume | Python & Full-Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #2563eb;
+            --accent: #0284c7;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --tag-bg: #eff6ff;
+            --tag-text: #1d4ed8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.5;
+            font-size: 13.5px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Action Bar (hidden in print) */
+        .action-bar {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .action-bar-title {
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #334155;
+            color: #f1f5f9;
+        }
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid #475569;
+        }
+        .btn-outline:hover {
+            color: white;
+            border-color: #94a3b8;
+        }
+
+        /* Resume Page Container */
+        .resume-container {
+            max-width: 860px;
+            margin: 32px auto;
+            background: var(--bg-card);
+            padding: 44px 52px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        /* Header */
+        .resume-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 18px;
+            margin-bottom: 20px;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .candidate-name {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .candidate-title {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-top: 2px;
+            letter-spacing: 0.2px;
+        }
+
+        .badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-live::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px 16px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border);
+            font-size: 12.5px;
+            color: var(--text-muted);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            color: var(--primary-light);
+            width: 14px;
+            font-size: 13px;
+        }
+
+        .contact-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+        .contact-item a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .section-title i {
+            font-size: 12px;
+            color: var(--primary-light);
+        }
+
+        /* Summary */
+        .summary-text {
+            color: var(--text-muted);
+            text-align: justify;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Skills Table/Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 8px 16px;
+            font-size: 12.5px;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .skill-list {
+            color: var(--text-muted);
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 11.5px;
+            font-weight: 500;
+            margin: 1px 2px;
+        }
+
+        /* Experience & Projects Items */
+        .entry {
+            margin-bottom: 14px;
+        }
+        .entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+
+        .entry-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .entry-company {
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .entry-date {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+        }
+
+        .entry-location {
+            font-size: 11.5px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .entry-bullets {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 5px;
+        }
+
+        .entry-bullets li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+            font-size: 12.5px;
+            line-height: 1.55;
+        }
+
+        .entry-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            color: var(--primary-light);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .tech-stack-line {
+            font-size: 11.5px;
+            color: var(--text-light);
+            margin-top: 3px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .tech-stack-line strong {
+            color: var(--primary);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--primary-light);
+            text-decoration: none;
+            margin-left: 8px;
+            padding: 1px 6px;
+            background: #eff6ff;
+            border-radius: 4px;
+            border: 1px solid #bfdbfe;
+        }
+        .project-link:hover {
+            background: #dbeafe;
+            text-decoration: underline;
+        }
+
+        /* Education & Certs */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 10px 20px;
+        }
+
+        .edu-item {
+            border-left: 2px solid var(--border);
+            padding-left: 10px;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .edu-school {
+            font-size: 12px;
+            color: var(--primary-light);
+        }
+
+        .edu-year {
+            font-size: 11.5px;
+            color: var(--text-light);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .certs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 6px 16px;
+            margin-top: 6px;
+        }
+
+        .cert-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: #f8fafc;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .cert-card i {
+            color: #eab308;
+            font-size: 13px;
+        }
+
+        /* Print Specific Rules */
+        @media print {
+            body {
+                background: white;
+                color: #000;
+                font-size: 11.5px;
+                line-height: 1.4;
+            }
+
+            .action-bar {
+                display: none !important;
+            }
+
+            .resume-container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0.25in 0.4in !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+
+            .candidate-name {
+                font-size: 22px;
+                color: #0f172a !important;
+            }
+
+            .candidate-title {
+                font-size: 12.5px;
+                color: #1e3a8a !important;
+            }
+
+            .section-title {
+                color: #1e3a8a !important;
+                font-size: 11.5px;
+                margin-bottom: 6px;
+                padding-bottom: 2px;
+                border-bottom: 1px solid #94a3b8 !important;
+            }
+
+            .section {
+                margin-bottom: 12px;
+                page-break-inside: avoid;
+            }
+
+            .entry {
+                margin-bottom: 8px;
+                page-break-inside: avoid;
+            }
+
+            .entry-title {
+                font-size: 12px;
+            }
+
+            .entry-bullets li {
+                font-size: 11px;
+                line-height: 1.4;
+                margin-bottom: 2px;
+            }
+
+            .skills-grid {
+                font-size: 11px;
+                gap: 4px 10px;
+            }
+
+            .skill-tag {
+                background: #f1f5f9 !important;
+                color: #0f172a !important;
+                font-size: 10px;
+                padding: 0 4px;
+            }
+
+            .project-link {
+                color: #1e3a8a !important;
+                border: none !important;
+                background: transparent !important;
+                padding: 0 !important;
+            }
+
+            a {
+                color: #0f172a !important;
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Action Bar for interactive browser use -->
+    <header class="action-bar">
+        <div class="action-bar-title">
+            <i class="fa-solid fa-file-invoice" style="color: #60a5fa;"></i>
+            <span>Harshita Muchhadiya &mdash; Official Resume (Interview-Ready)</span>
+        </div>
+        <div class="action-buttons">
+            <a href="/" class="btn btn-outline">
+                <i class="fa-solid fa-arrow-left"></i> Portfolio Home
+            </a>
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="fa-solid fa-print"></i> Print / Save as PDF
+            </button>
+            <button onclick="copyResumeText()" class="btn btn-secondary">
+                <i class="fa-solid fa-copy"></i> Copy Plain Text
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Printable Resume Sheet -->
+    <main class="resume-container">
+        <!-- Header -->
+        <header class="resume-header">
+            <div class="header-main">
+                <div>
+                    <h1 class="candidate-name">Harshita Muchhadiya</h1>
+                    <div class="candidate-title">Python Developer &bull; Full-Stack Software Engineer (Flask &bull; Django &bull; React)</div>
+                </div>
+                <div>
+                    <span class="badge-live">Available for Hire</span>
+                </div>
+            </div>
+
+            <div class="contact-info-grid">
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+918380444758">+91 8380444758</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:harshitamuchhadiya2@gmail.com">harshitamuchhadiya2@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Ahmedabad, Gujarat, India</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="https://github.com/harshitamuchhadiya2-gif" target="_blank">github.com/harshitamuchhadiya2-gif</a>
+                </div>
+                <div class="contact-item" style="grid-column: span 2;">
+                    <i class="fa-solid fa-globe" style="color: #0284c7;"></i>
+                    <span><strong>Live Portfolio & Projects:</strong> 
+                        <a href="https://finsight-analytics.vercel.app" target="_blank" style="color: #0284c7; font-weight: 600;">
+                            floral-meadow-d466.harshitamuchhadiya2.workers.dev
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> Professional Summary</h2>
+            <p class="summary-text">
+                Results-driven BCA Graduate and Full-Stack Python Developer with hands-on internship experience in <strong>Python, Django, Flask, React.js, and Machine Learning</strong>. Proven ability to architect, build, and deploy production-grade software applications—including a live financial analytics platform deployed on Cloudflare Workers and an NLP-based AI Resume Analyzer. Adept at designing normalized relational database schemas (MySQL), writing clean RESTful APIs, and translating business requirements into high-performance web applications. Seeking an entry-level Software Engineer / Python Developer role to contribute immediate value to engineering teams.
+            </p>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">Programming Languages:</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Python (Core & OOP)</span>
+                    <span class="skill-tag">JavaScript (ES6+)</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+
+                <div class="skill-category">Web Frameworks:</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Django (MVT & ORM)</span>
+                    <span class="skill-tag">Flask (RESTful APIs)</span>
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                    <span class="skill-tag">Bootstrap</span>
+                </div>
+
+                <div class="skill-category">AI, ML & NLP:</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Machine Learning Basics</span>
+                    <span class="skill-tag">Natural Language Processing (NLP)</span>
+                    <span class="skill-tag">TF-IDF Vectorization</span>
+                    <span class="skill-tag">Cosine Similarity</span>
+                    <span class="skill-tag">Pandas & NumPy</span>
+                    <span class="skill-tag">Data Cleaning</span>
+                </div>
+
+                <div class="skill-category">Databases:</div>
+                <div class="skill-list">
+                    <span class="skill-tag">MySQL (Schema Design & Joins)</span>
+                    <span class="skill-tag">SQLite</span>
+                    <span class="skill-tag">Relational Data Modeling</span>
+                </div>
+
+                <div class="skill-category">Tools & Platforms:</div>
+                <div class="skill-list">
+                    <span class="skill-tag">Git & GitHub</span>
+                    <span class="skill-tag">Cloudflare Workers (Edge Deployment)</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Postman (API Testing)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects (3 Key Projects) -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Key Featured Projects</h2>
+
+            <!-- Project 1: FinSight Analytics (Live Deployed) -->
+            <article class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">FinSight Analytics &mdash; Live Financial Intelligence Dashboard</span>
+                        <a href="https://finsight-analytics.vercel.app" target="_blank" class="project-link">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App
+                        </a>
+                    </div>
+                    <span class="entry-date">Cloudflare Workers</span>
+                </div>
+                <div class="tech-stack-line"><strong>Tech Stack:</strong> React.js, Tailwind CSS, Cloudflare Workers, JavaScript ES6+, Recharts</div>
+                <ul class="entry-bullets">
+                    <li>Architected and deployed a production financial intelligence dashboard hosted globally on <strong>Cloudflare Workers edge runtime</strong> with near-zero cold-start latency.</li>
+                    <li>Designed responsive, modern UI modules for portfolio asset allocation, cash flow projections, and risk distribution analysis.</li>
+                    <li>Implemented dynamic client-side filtering, interactive calculation algorithms, and high-performance charting components.</li>
+                </ul>
+            </article>
+
+            <!-- Project 2: AI Resume Analyzer & Job Matcher -->
+            <article class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">ResumeX Pro &mdash; AI Resume Analyzer (ML & NLP Career Tool)</span>
+                        <a href="https://github.com/harshitamuchhadiya2-gif/ResumeX-AI" target="_blank" class="project-link">
+                            <i class="fa-brands fa-github"></i> GitHub Repo
+                        </a>
+                    </div>
+                    <span class="entry-date">Python &bull; Flask</span>
+                </div>
+                <div class="tech-stack-line"><strong>Tech Stack:</strong> Python, Flask, Scikit-Learn, NLP, TF-IDF Vectorizer, Cosine Similarity, HTML/CSS/JS</div>
+                <ul class="entry-bullets">
+                    <li>Engineered an automated resume parsing and scoring system that compares candidate resumes with target job descriptions using <strong>Natural Language Processing (NLP)</strong>.</li>
+                    <li>Utilized <strong>TF-IDF vectorization and Cosine Similarity</strong> to compute semantic relevancy scores with 90%+ match accuracy.</li>
+                    <li>Automated extraction of 250+ technical competencies and generated actionable skill-gap reports highlighting missing recruiter keywords.</li>
+                </ul>
+            </article>
+
+            <!-- Project 3: Django Enterprise REST API & Services -->
+            <article class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">Django Enterprise REST API &amp; Services</span>
+                        <a href="https://github.com/harshitamuchhadiya2-gif" target="_blank" class="project-link">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <span class="entry-date">Django &bull; MySQL</span>
+                </div>
+                <div class="tech-stack-line"><strong>Tech Stack:</strong> Python, Django, MySQL, RESTful APIs, JWT Authentication, Postman</div>
+                <ul class="entry-bullets">
+                    <li>Architected scalable server-side backend services with Python and Django Model-View-Template (MVT) architecture.</li>
+                    <li>Designed normalized MySQL relational database schemas with primary/foreign key indexing, reducing query response times by 35%.</li>
+                    <li>Implemented secure Role-Based Access Control (RBAC) and high-throughput RESTful API endpoints thoroughly validated via Postman.</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- Professional Experience & Internships -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Internship Experience</h2>
+
+            <!-- Internship 1 -->
+            <article class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">Python Django Intern</span> &bull; 
+                        <span class="entry-company">Techmicra IT Solutions</span>
+                    </div>
+                    <span class="entry-date">Ahmedabad, India</span>
+                </div>
+                <ul class="entry-bullets">
+                    <li>Gained rigorous hands-on experience in server-side web development using Python and the Django framework (Model-View-Template architecture).</li>
+                    <li>Constructed database schemas, migrations, and model relationships in MySQL; implemented CRUD APIs with standard error handling.</li>
+                    <li>Followed software engineering best practices including modular design patterns, code refactoring, Git version control, and debugging.</li>
+                </ul>
+            </article>
+
+            <!-- Internship 2 -->
+            <article class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">Machine Learning Intern</span> &bull; 
+                        <span class="entry-company">AICW by Microsoft</span>
+                    </div>
+                    <span class="entry-date">Virtual / India</span>
+                </div>
+                <ul class="entry-bullets">
+                    <li>Acquired foundational and applied knowledge in Artificial Intelligence and Machine Learning pipelines using Python data science libraries.</li>
+                    <li>Performed Exploratory Data Analysis (EDA), missing value imputation, feature scaling, and data visualization using Pandas and Matplotlib.</li>
+                    <li>Trained and evaluated classification and regression models using Scikit-Learn, measuring precision, recall, and F1-scores.</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+            <div class="edu-grid">
+                <div class="edu-item">
+                    <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+                    <div class="edu-school">JG University, Ahmedabad (M.Sc. IT - BIA) & Shreyarth University (BCA)</div>
+                    <div class="edu-year">Graduating 2026</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
+                    <div class="edu-school">Vikas Gruh School</div>
+                    <div class="edu-year">Completed 2023</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-degree">Secondary School Certificate (SSC)</div>
+                    <div class="edu-school">Vikas Gruh School</div>
+                    <div class="edu-year">Completed 2021</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-award"></i> Certifications & Credentials</h2>
+            <div class="certs-list">
+                <div class="cert-card">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div>
+                        <strong>Python Django Internship Certificate</strong><br>
+                        <span>Techmicra IT Solutions</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div>
+                        <strong>Machine Learning Internship Certificate</strong><br>
+                        <span>AICW by Microsoft</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div>
+                        <strong>Course on Computer Concepts (CCC)</strong><br>
+                        <span>Government Certified</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function copyResumeText() {
+            const resumeText = `HARSHITA MUCHHADIYA
+Python Developer | Full-Stack Software Engineer (Flask, Django, React)
+Phone: +91 8380444758 | Email: harshitamuchhadiya2@gmail.com | Ahmedabad, Gujarat
+GitHub: https://github.com/harshitamuchhadiya2-gif
+Live Portfolio & Projects: https://finsight-analytics.vercel.app
+
+PROFESSIONAL SUMMARY
+Results-driven BCA Graduate and Full-Stack Python Developer with hands-on internship experience in Python, Django, Flask, React.js, and Machine Learning. Proven ability to architect, build, and deploy production-grade software applications—including a live financial analytics platform deployed on Cloudflare Workers and an NLP-based AI Resume Analyzer. Adept at designing normalized relational database schemas (MySQL), writing clean RESTful APIs, and translating business requirements into high-performance web applications.
+
+TECHNICAL SKILLS
+- Programming: Python (Core & OOP), JavaScript (ES6+), PHP, HTML5, CSS3, SQL
+- Frameworks: Django (MVT & ORM), Flask (REST APIs), React.js, Tailwind CSS, Bootstrap
+- AI/ML & NLP: Machine Learning Basics, NLP, TF-IDF, Cosine Similarity, Pandas, NumPy
+- Databases: MySQL (Schema Design, Joins, Indexes), SQLite
+- Tools: Git, GitHub, Cloudflare Workers, VS Code, Postman
+
+KEY FEATURED PROJECTS
+1. FinSight Analytics — Live Financial Intelligence Dashboard
+   Live Link: https://finsight-analytics.vercel.app
+   Stack: React.js, Tailwind CSS, Cloudflare Workers, JavaScript ES6+
+   - Architected and deployed a production financial dashboard on Cloudflare Workers edge runtime with near-zero latency.
+   - Built interactive charting for asset allocation, cash flow projections, and risk metrics.
+
+2. AI Resume Analyzer & Job Matcher — ML & NLP Career Tool
+   Stack: Python, Flask, Scikit-Learn, NLP, TF-IDF Vectorizer, Cosine Similarity
+   - Automated resume parsing and matching against job descriptions using Natural Language Processing.
+   - Extracted 250+ technical competencies and generated automated skill-gap analysis.
+
+3. Django Enterprise REST API & Services
+   Stack: Python, Django, MySQL, RESTful APIs, JWT Authentication, Postman
+   - Architected scalable server-side backend services with Django MVT architecture.
+   - Designed normalized MySQL relational schemas, reducing query response times by 35%.
+   - Built secure RESTful API endpoints and role-based access control tested with Postman.
+
+INTERNSHIP EXPERIENCE
+- Python Django Intern | Techmicra IT Solutions
+  Server-side development with Django MVT, MySQL relational database modeling, and RESTful APIs.
+- Machine Learning Intern | AICW by Microsoft
+  Exploratory Data Analysis (EDA), feature preprocessing, and classification modeling with Scikit-learn.
+
+EDUCATION
+- Bachelor of Computer Applications (BCA) | Shreyarth University (2026)
+- Higher Secondary Certificate (HSC) | Vikas Gruh School (2023)
+- Secondary School Certificate (SSC) | Vikas Gruh School (2021)
+
+CERTIFICATIONS
+- Python Django Internship Certificate - Techmicra IT Solutions
+- Machine Learning Internship Certificate - AICW by Microsoft
+- Course on Computer Concepts (CCC)
+`;
+            navigator.clipboard.writeText(resumeText).then(() => {
+                alert("Plain text resume copied to clipboard! You can paste it into email or application forms.");
+            }).catch(err => {
+                console.error("Clipboard copy failed: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
