@@ -47,8 +47,8 @@ PROFILE = {
         }
     ],
     "skills": {
-        "Programming Languages": "Python, JavaScript, SQL, HTML5, CSS3",
-        "Frameworks & Libraries": "FastAPI, Flask, Django, React, Pandas, NumPy, Scikit-learn",
+        "Frameworks": "FastAPI, Flask, Django, React, Pandas, NumPy, Scikit-learn",
+        "Programming": "Python, JavaScript, SQL, HTML5, CSS3",
         "Databases & Cloud": "MongoDB Atlas, SQLite, MySQL, Docker, Vercel, Render",
         "Analytics & ML": "Natural Language Processing (NLP), Data Cleaning, Financial Modeling, Statistical Analysis",
         "Developer Tools": "Git, GitHub, VS Code, Postman, Linux CLI",

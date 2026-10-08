@@ -12,7 +12,7 @@
 <header class="hero"><div><h1>{{ p.name }}</h1><p class="lead">{{ p.title }}</p>
 <a class="btn" href="#projects">View projects</a><a class="btn o" href="{{ url_for('resume') }}">Download resume</a></div>
 <div class="code" aria-label="Profile summary written as Python code"><b>class</b> Harshita:
-    stack = [{% for s in p.skills['Frameworks'].split(', ') %}<i>"{{ s }}"</i>{{ ", " if not loop.last }}{% endfor %}]
+    stack = [{% for s in (p.skills.get('Frameworks') or p.skills.get('Frameworks & Libraries') or '').split(', ') %}<i>"{{ s }}"</i>{{ ", " if not loop.last }}{% endfor %}]
     studying = <i>"{{ p.education[0].what }}, {{ p.education[0].where }}"</i>
     open_to = <i>"Backend / Python / Data roles"</i></div></header>
 <section id="about"><h2>Career objective</h2><p class="obj">{{ p.objective }}</p></section>
