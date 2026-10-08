@@ -31,7 +31,7 @@ PROFILE = {
             "stack": "FastAPI, React 18, MongoDB Atlas, Pandas, ReportLab, Docker",
             "text": "Enterprise financial intelligence and automated advisory platform. Ingests corporate Excel/CSV/PDF records, calculates revenue velocity, EBITDA margin buffers, expense driver concentrations, and generates Big-4 caliber executive advisory dossiers with interactive Case Study decision modeling. Features secure client & admin portals, confidential file delivery, and real-time messaging.",
             "links": [
-                ("Live Web App", "https://finsight-analytics.vercel.app"),
+                ("Live Web App", "https://finsight-analytics-five.vercel.app"),
                 ("Live API & Docs", "https://finsight-api-prod.onrender.com/docs"),
                 ("Source Code", GH + "/finsight-analytics")
             ]

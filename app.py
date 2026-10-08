@@ -24,7 +24,7 @@ PROFILE_DATA = {
     "github": GH,
     "github_username": "harshitamuchhadiya2-gif",
     "linkedin": LINKEDIN,
-    "live_project": "https://finsight-analytics.vercel.app",
+    "live_project": "https://finsight-analytics-five.vercel.app/",
     "bio": (
         "Dedicated and solution-oriented software engineer with practical internship experience "
         "in Python, Django, Flask, React, and Machine Learning. Proven track record of developing "
@@ -53,7 +53,7 @@ PROJECTS = [
         "category": "Full-Stack & Cloud",
         "badge": "Live Production",
         "featured": True,
-        "live_url": "https://finsight-analytics.vercel.app",
+        "live_url": "https://finsight-analytics-five.vercel.app",
         "api_docs_url": "https://finsight-api-prod.onrender.com/docs",
         "github_url": GH + "/finsight-analytics",
         "description": (
