@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ p.name }} | Python & Backend Developer</title>
+<meta name="description" content="{{ p.title }}. Projects: FinSight Analytics and ResumeX Pro.">
+<meta property="og:type" content="website"><meta property="og:title" content="{{ p.name }} | Python & Backend Developer">
+<meta property="og:description" content="Django, Flask, FastAPI and machine learning projects. M.Sc. IT (BIA) student.">
+<meta property="og:url" content="{{ request.url_root }}"><meta property="og:image" content="{{ url_for('static', filename='preview.png', _external=True) }}">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F766E'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body><div class="w">
+<nav><a href="#about">About</a><a href="#education">Education</a><a href="#experience">Internships</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
+<header class="hero"><div><h1>{{ p.name }}</h1><p class="lead">{{ p.title }}</p>
+<a class="btn" href="#projects">View projects</a><a class="btn o" href="{{ url_for('resume') }}">Download resume</a></div>
+<div class="code" aria-label="Profile summary written as Python code"><b>class</b> Harshita:
+    stack = [{% for s in p.skills['Frameworks'].split(', ') %}<i>"{{ s }}"</i>{{ ", " if not loop.last }}{% endfor %}]
+    studying = <i>"{{ p.education[0].what }}, {{ p.education[0].where }}"</i>
+    open_to = <i>"Backend / Python / Data roles"</i></div></header>
+<section id="about"><h2>Career objective</h2><p class="obj">{{ p.objective }}</p></section>
+<section id="education"><h2>Education</h2><div class="tl">{% for e in p.education %}<div><strong>{{ e.what }}</strong>{{ e.where }} {% if e.when %}<em>({{ e.when }})</em>{% endif %}</div>{% endfor %}</div></section>
+<section id="experience"><h2>Internship experience</h2>{% for i in p.internships %}<article class="pj"><div><h3>{{ i.role }}</h3></div><div><ul>{% for x in i.points %}<li>{{ x }}</li>{% endfor %}</ul></div></article>{% endfor %}</section>
+<section id="projects"><h2>Projects</h2>{% for j in p.projects %}<article class="pj"><div><h3>{{ j.name }}</h3><small>{{ j.stack }}</small></div><div><p>{{ j.text }}</p>{% for n,u in j.links %}<a href="{{ u }}">{{ n }}</a> &nbsp; {% endfor %}</div></article>{% endfor %}</section>
+<section id="skills"><h2>Technical skills</h2><dl>{% for k,v in p.skills.items() %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}</dl>
+<h2 style="margin-top:40px">Soft skills</h2><ul class="chips">{% for s in p.soft_skills %}<li>{{ s }}</li>{% endfor %}</ul>
+<h2 style="margin-top:40px">Certifications</h2><ul>{% for c in p.certifications %}<li>{{ c }}</li>{% endfor %}</ul></section>
+<section id="contact"><h2>Contact</h2><p>Open to backend, Python and data roles.</p>
+<a class="btn" href="mailto:{{ p.email }}">{{ p.email }}</a><a class="btn o" href="tel:{{ p.phone }}">{{ p.phone }}</a><a class="btn o" href="{{ p.linkedin }}">LinkedIn</a><a class="btn o" href="{{ p.github }}">GitHub</a></section>
+</div><footer><div class="w">&copy; {{ p.name }}. Built with Python and Flask.</div></footer></body></html>

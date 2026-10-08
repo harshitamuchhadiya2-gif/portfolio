@@ -1,0 +1,23 @@
+
+:root{--bg:#F5F7F8;--ink:#13222B;--mut:#52646E;--ac:#0F766E;--ln:#D5DEE3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Manrope,system-ui,sans-serif}
+a{color:var(--ac);font-weight:600}a:focus-visible,button:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.w{max-width:980px;margin:auto;padding:0 24px}
+nav{display:flex;gap:22px;justify-content:flex-end;padding:20px 0;font-size:15px}nav a{text-decoration:none;color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;padding:44px 0 72px}
+h1{font-size:clamp(40px,6vw,66px);line-height:1.04;margin:0 0 18px;font-weight:800;letter-spacing:-.02em}
+.lead{font-size:20px;color:var(--mut);margin:0 0 26px;max-width:30em}
+.btn{display:inline-block;padding:12px 22px;border-radius:8px;background:var(--ac);color:#fff;text-decoration:none;margin:0 10px 10px 0}
+.btn.o{background:none;border:2px solid var(--ac);color:var(--ac)}
+.code{background:var(--ink);color:#C7D3DA;border-radius:12px;padding:24px;font:14.5px/1.8 ui-monospace,Menlo,Consolas,monospace;overflow-x:auto;white-space:pre}
+.code b{color:#5EEAD4;font-weight:400}.code i{color:#F2C97D;font-style:normal}
+section{padding:56px 0;border-top:1px solid var(--ln)}
+h2{font-size:30px;margin:0 0 26px;font-weight:800}
+.pj{display:grid;grid-template-columns:230px 1fr;gap:8px 32px;padding:24px 0;border-bottom:1px solid var(--ln)}
+.pj:first-of-type{padding-top:0}.pj h3{margin:0;font-size:21px}.pj small{color:var(--mut);font-size:15px;display:block;margin-top:4px}.pj p{margin:0 0 10px}
+dl{display:grid;grid-template-columns:150px 1fr;gap:10px 24px;margin:0}dt{font-weight:800}dd{margin:0;color:var(--mut)}
+.tl{border-left:3px solid var(--ac);padding-left:24px}.tl div{margin-bottom:22px}.tl strong{display:block}.tl span{color:var(--mut);font-size:15px}
+footer{padding:48px 0;border-top:1px solid var(--ln);color:var(--mut)}
+@media(max-width:760px){.hero,.pj,dl{grid-template-columns:1fr}.hero{padding-top:12px}nav{justify-content:flex-start;flex-wrap:wrap}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0;list-style:none}.chips li{border:1.5px solid var(--ln);border-radius:99px;padding:6px 16px;font-size:15px}.obj{font-size:20px;max-width:34em;margin:0}.tl em{font-style:normal;color:var(--mut);font-size:15px}.pj ul{margin:0 0 10px;padding-left:20px}
