@@ -233,6 +233,38 @@ def api_analyze_resume():
         "recommendations": recommendations
     })
 
+MESSAGES_FILE = os.path.join(BASE_DIR, "messages.json")
+
+def load_messages():
+    if not os.path.exists(MESSAGES_FILE):
+        return []
+    try:
+        with open(MESSAGES_FILE, "r", encoding="utf-8") as f:
+            import json
+            return json.load(f)
+    except Exception:
+        return []
+
+def save_message(name, email, message):
+    from datetime import datetime
+    import json
+    messages = load_messages()
+    new_msg = {
+        "id": len(messages) + 1,
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "name": name,
+        "email": email,
+        "message": message,
+        "ip": request.remote_addr or "Unknown"
+    }
+    messages.insert(0, new_msg)
+    try:
+        with open(MESSAGES_FILE, "w", encoding="utf-8") as f:
+            json.dump(messages, f, indent=2)
+    except Exception as e:
+        print(f"Error saving message: {e}")
+    return new_msg
+
 @app.route("/api/contact", methods=["POST"])
 def api_contact():
     data = request.get_json() or {}
@@ -243,10 +275,17 @@ def api_contact():
     if not name or not email or not message:
         return jsonify({"success": False, "error": "All fields are required"}), 400
 
+    save_message(name, email, message)
+
     return jsonify({
         "success": True,
         "message": f"Thank you {name}! Your message has been received. Harshita will respond to {email} shortly."
     })
+
+@app.route("/admin/messages")
+def admin_messages():
+    messages = load_messages()
+    return render_template("messages.html", messages=messages)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
